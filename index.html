@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anup Chauhan - Portfolio</title>
+    <style>
+        /* Basic Reset and Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            text-align: center;
+            background-color: #f8f9fa;
+        }
+
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background-color: #ff6347;
+            width: 0;
+            z-index: 1000;
+        }
+        
+        /* Header Styling */
+        header {
+            background: #333;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 2px solid #fff;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.1);
+        }
+
+        header h1 {
+            font-size: 1.5em;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        header h1 .first-letter {
+            color: red;
+            font-size: 2em;
+            margin-right: 3px;
+        }
+
+        /* Navigation Styling */
+        nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #ff6347;
+            transition: width 0.3s;
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: #ff6347;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 20px;
+            margin: 10px 0;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            color: #333;
+        }
+
+        /* About Section Styling */
+        #about h2,
+        #skills h2,
+        .grid-section h2 {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        #about p,
+        #skills li {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        /* Skills Section Styling */
+        #skills {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        #skills ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #skills li {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        /* Grid Section Styling */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .grid-item {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .grid-item:hover {
+            transform: scale(1.05);
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Follower Counts Section */
+        #follower-counts {
+            background-color: #fff;
+            padding: 20px;
+            margin: 10px 0;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .follower {
+            margin: 15px 0;
+            font-size: 1.5em;
+        }
+
+        .follower a {
+            color: #ff6347;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .follower a:hover {
+            text-decoration: underline;
+        }
+
+        /* Contact Form Styling */
+        #contact form {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        #contact form label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        #contact form input,
+        #contact form textarea,
+        #contact form button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #contact form button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        #contact form button:hover {
+            background-color: #ff6347;
+        }
+
+        /* Contact Links Styling */
+        #contact a {
+            color: #333;
+            text-decoration: none;
+            font-size: 1.1em;
+            display: inline-block;
+            margin: 5px 15px;
+            transition: color 0.3s;
+        }
+
+        #contact a:hover {
+            color: #ff6347;
+        }
+
+        /* Footer Styling */
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div id="progress-bar"></div>
+
+    <!-- Header Section -->
+    <header>
+        <img src="design/my photo.jpg" alt="Profile Photo" class="profile-image" id="profilePic">
+        <h1>
+            <span class="first-letter">A</span>nup Chauhan
+        </h1>
+        <p>Mechanical Designer | Automobile Engineer</p>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#design-project">Design Projects</a>
+            <a href="#manufacturing">Manufacturing</a>
+            <a href="#cae">CAE or Simulation</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <p>
+            Mechanical Designer specializing in 3D modeling and automotive engineering, with hands-on experience in motorcycle development and complex mechanical mechanisms. Skilled in SolidWorks, Siemens NX, and aerodynamic simulation, I create innovative designs from concept to completion. Passionate about advancing 3D technology in vehicle and product design for enhanced performance and functionality.
+        </p>
+    </section>
+
+    <!-- Follower Counts Section -->
+    <section id="follower-counts">
+        <div class="follower">
+            <a href="https://www.instagram.com/3d_design_pro_" target="_blank">Instagram: 82.5k+ Followers</a>
+        </div>
+        <div class="follower">
+            <a href="https://www.youtube.com/@3DDesignPro" target="_blank">YouTube: 6.5k+ Subscribers</a>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Skills</h2>
+        <ul>
+            <li>3D Modeling & CAD Design</li>
+            <li>Manufacturing Processes</li>
+            <li>Finite Element Analysis (FEA)</li>
+            <li>Geometric Dimensioning & Tolerancing (GD&T)</li>
+            <li>Mechanical Mechanisms & Machine Design</li>
+            <li>Project Leadership & Team Collaboration</li>
+            <li>Automotive Systems Knowledge</li>
+        </ul>
+    </section>
+
+    <!-- Design Projects Section -->
+    <section id="design-project" class="grid-section">
+        <h2>Design Projects</h2>
+        <div class="grid-container">
+            <div class="grid-item"><img src="design/atv Design.jpg" alt="ATV Design"></div>
+            <div class="grid-item"><img src="design/double mold Brick.jpg" alt="Double Mold Brick"></div>
+            <div class="grid-item"><img src="design/Gear Design.jpg" alt="Gear Design"></div>
+            <div class="grid-item"><img src="design/Gripper.jpg" alt="Gripper"></div>
+            <div class="grid-item"><img src="design/Plant structure.jpg" alt="Plant Structure"></div>
+            <div class="grid-item"><img src="design/soil crusher.jpg" alt="soil crusher"></div>
+            <div class="grid-item"><img src="design/Buggy Design.jpg" alt="Buggy Design."></div>
+            <div class="grid-item"><img src="design/Explode.jpg" alt="Explode Design."></div>
+            <div class="grid-item"><img src="design/Drawing01.jpg" alt="drawing Design."></div> 
+        </div>
+    </section>
+
+    <!-- Manufacturing Section -->
+    <section id="manufacturing" class="grid-section">
+        <h2>Manufacturing</h2>
+        <div class="grid-container">
+            <div class="grid-item"><img src="design/cam01.jpg" alt="Manufacturing Image"></div>
+            <div class="grid-item"><img src="design/cam02.jpg" alt="Manufacturing Image"></div>
+            <div class="grid-item"><img src="design/cam03.jpg" alt="Manufacturing Image"></div>
+        </div>
+    </section>
+
+    <!-- Simulation Section -->
+    <section id="cae" class="grid-section">
+        <h2>CAE or Simulation</h2>
+        <div class="grid-container">
+            <div class="grid-item"><img src="design/ansys01.jpg" alt="CAE Simulation"></div>
+            <div class="grid-item"><img src="design/ansys02.jpg" alt="CAE Simulation"></div>
+            <div class="grid-item"><img src="design/ansys03.jpg" alt="CAE Simulation"></div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>📞Contact Me</h2>
+        <form action="/submit_form" method="post">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+        <p>Find me on:</p>
+        <a href="https://www.instagram.com/3d_design_pro_" target="_blank">📸Instagram</a>
+        <a href="https://www.youtube.com/@3DDesignPro" target="_blank">🔴YouTube</a>
+        <a href="https://www.linkedin.com/in/anup-chauhan/" target="_blank">🔗LinkedIn</a>
+        <a href="https://wa.me/9779861655246" target="_blank">📞WhatsApp/viber: +9779861655246</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Anup Chauhan</p>
+    </footer>
+
+    <!-- JavaScript for Hover and Progress Bar -->
+    <script>
+        const profilePic = document.getElementById('profilePic');
+        const originalPic = profilePic.src;
+        const logoPic = "design/logo.jpg";
+
+        profilePic.addEventListener("mouseover", () => profilePic.src = logoPic);
+        profilePic.addEventListener("mouseout", () => profilePic.src = originalPic);
+
+        window.onscroll = () => {
+            const scrollPosition = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercentage = (scrollPosition / docHeight) * 100;
+            document.getElementById("progress-bar").style.width = scrollPercentage + "%";
+        };
+    </script>
+</body>
+</html>
+
